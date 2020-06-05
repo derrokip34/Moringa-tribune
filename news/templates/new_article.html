@@ -1,0 +1,35 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>New Article</title>
+  {{form.media}}
+
+{% block styles %}
+ {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/news.css' %}"> 
+  {% endblock %}
+
+</head>
+
+<body>
+
+  <form  action="{%url 'new-article'%}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+
+    {% bootstrap_form form%}
+    <input type="submit" class="btn btn-success btn-lg" value="Post">
+  </form>
+
+   {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %} {% endblock %}
+
+</body>
+
+</html>
